@@ -264,3 +264,18 @@ extension Pokemon: Equatable {
 			lhs._currentHP == rhs._currentHP
 	}
 }
+
+extension Pokemon: Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.ability)
+        hasher.combine(self.attacks)
+        hasher.combine(self.effortValues)
+        hasher.combine(self.individualValues)
+        hasher.combine(self.level)
+        hasher.combine(self.nature)
+        hasher.combine(self.species)
+        hasher.combine(self.modifiedStats)
+    }
+    
+}
