@@ -128,7 +128,7 @@ public class Pokemon: Codable {
 	
 	internal(set) public var nature: Nature
 	
-	public init(species: PokemonSpecies, level: Int = 50, ability: Ability = Ability(name: "Some ability", description: "Some Description"), nature: Nature, effortValues: Stats, individualValues: Stats, attacks: [Attack]) {
+	public init(species: PokemonSpecies, level: Int = 50, ability: Ability = Ability(name: "Normalize", description: "Some Description"), nature: Nature, effortValues: Stats, individualValues: Stats, attacks: [Attack]) {
 		self.species = species
 		self.level = level
 		self.effortValues = effortValues
