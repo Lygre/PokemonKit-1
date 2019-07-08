@@ -754,7 +754,7 @@ public class Pokedex {
 		return attacks
 	}
 	
-	static func getAttacksForPokemon(_ pokemon: Int, attacks: [String: Attack]) -> [MovesetItem] {
+	public static func getAttacksForPokemon(_ pokemon: Int, attacks: [String: Attack]) -> [MovesetItem] {
 		let db = databaseConnection
 		var moveset: [MovesetItem] = []
 		
