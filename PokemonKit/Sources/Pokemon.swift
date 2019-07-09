@@ -11,7 +11,7 @@ import Foundation
 
 /// A Pokemon object refers to a specific instance of a Pokémon
 ///
-public class Pokemon: Codable {
+open class Pokemon: Codable {
 	private var _nickname: String?
 	public var nickname: String {
 		get {
@@ -21,14 +21,14 @@ public class Pokemon: Codable {
 			_nickname = newValue
 		}
 	}
-	internal(set) public var species: PokemonSpecies
-	public let level: Int
-	public let effortValues: Stats
-	public let individualValues: Stats
-	internal(set) public var attacks: [Attack]
+	internal(set) open var species: PokemonSpecies
+	open var level: Int
+	open var effortValues: Stats
+	open var individualValues: Stats
+	open var attacks: [Attack]
 	internal(set) public var status: Status
 	internal(set) public var volatileStatus: Set<VolatileStatus> = Set()
-	public var ability: Ability
+	open var ability: Ability
 	
 	private lazy var _currentHP: Int = {
 		return baseStats.hp
@@ -126,7 +126,7 @@ public class Pokemon: Codable {
 		}
 	}
 	
-	internal(set) public var nature: Nature
+	open var nature: Nature
 	
 	public init(species: PokemonSpecies, level: Int = 50, ability: Ability = Ability(name: "Normalize", description: "Some Description"), nature: Nature, effortValues: Stats, individualValues: Stats, attacks: [Attack]) {
 		self.species = species
