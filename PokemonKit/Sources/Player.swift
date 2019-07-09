@@ -9,6 +9,7 @@
 import Foundation
 import GameplayKit
 
+@available(iOSApplicationExtension 13.0, *)
 public class Player: NSObject, Codable, GKGameModelPlayer {	
 	public let name: String
 	internal(set) public var team = [Pokemon]()
@@ -57,6 +58,7 @@ public class Player: NSObject, Codable, GKGameModelPlayer {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Player {
 	public static func == (lhs: Player, rhs: Player) -> Bool {
 		return lhs.name == rhs.name &&

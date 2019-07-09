@@ -6,6 +6,7 @@
 //  Copyright © 2018 Rhys Morgan. All rights reserved.
 //
 
+@available(iOSApplicationExtension 13.0, *)
 public struct PokemonEvolution: Hashable, Codable {
 	public let evolvedPokemon: PokemonSpecies
 	public let conditions: Set<EvolutionConditions>

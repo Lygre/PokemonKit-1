@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension 13.0, *)
 public struct PokemonSpecies: Codable, Hashable {
 	public let dexNum: Int
 	public let generation: Generation
@@ -104,6 +105,7 @@ public struct PokemonSpecies: Codable, Hashable {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension PokemonSpecies: CustomStringConvertible {
 	public var description: String {
 		return "Pokémon Species: \(name)"

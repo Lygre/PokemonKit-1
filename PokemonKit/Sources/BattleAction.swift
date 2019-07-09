@@ -6,6 +6,7 @@
 //  Copyright © 2018 Rhys Morgan. All rights reserved.
 //
 
+@available(iOSApplicationExtension 13.0, *)
 public enum BattleAction {
 	case switchTo(Pokemon, for: Player)
 	case displayText(String)

@@ -8,6 +8,7 @@
 
 import GameplayKit
 
+@available(iOSApplicationExtension 13.0, *)
 public class Turn: NSObject, Codable, GKGameModelUpdate {
 	public let player: Player
 	let action: Action
@@ -55,8 +56,24 @@ public class Turn: NSObject, Codable, GKGameModelUpdate {
 		self.player = Player(copying: turn.player)
 		self.action = turn.action
 	}
+    
+    public override var description: String {
+        switch action {
+        case let .attack(attack):
+            return "\(player.name)'s \(player.activePokemon.nickname) is going to use attack \(attack.name)"
+        case let .switchTo(pokemon):
+            return "\(player.name) is going to switch to \(pokemon.nickname)"
+        case let .forceSwitch(pokemon):
+            return "\(player.name) had to switch in \(pokemon.nickname)"
+        case .run:
+            return "\(player.name) is going to run"
+        case .recharge:
+            return "\(player.activePokemon.nickname) must recharge!"
+        }
+    }
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Turn {
 	public static func == (lhs: Turn, rhs: Turn) -> Bool {
 		return lhs.playerSpeed == rhs.playerSpeed &&
@@ -65,19 +82,7 @@ extension Turn {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Turn {
-	public override var description: String {
-		switch action {
-		case let .attack(attack):
-			return "\(player.name)'s \(player.activePokemon.nickname) is going to use attack \(attack.name)"
-		case let .switchTo(pokemon):
-			return "\(player.name) is going to switch to \(pokemon.nickname)"
-		case let .forceSwitch(pokemon):
-			return "\(player.name) had to switch in \(pokemon.nickname)"
-		case .run:
-			return "\(player.name) is going to run"
-		case .recharge:
-			return "\(player.activePokemon.nickname) must recharge!"
-		}
-	}
+	
 }

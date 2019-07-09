@@ -8,6 +8,7 @@
 
 import SQLite
 
+@available(iOSApplicationExtension 13.0, *)
 public class Pokedex {
 	
 	/// Shared resource for accessing the Pokedex
@@ -829,6 +830,7 @@ public class Pokedex {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Array where Element == PokemonSpecies {
 	public subscript(_ identifier: String) -> PokemonSpecies? {
 		return self.filter { $0.identifier == identifier }.first

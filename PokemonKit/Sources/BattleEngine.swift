@@ -14,6 +14,8 @@ import GameplayKit
 /// One BattleEngine runs one single battle between two players.
 ///
 /// A BattleEngine object can only be instantiated via `BattleEngine.init(playerOne:playerTwo:)`
+
+@available(iOSApplicationExtension 13.0, *)
 public class BattleEngine: NSObject, GKGameModel {
 	private let maxTurnCount: Int
 	

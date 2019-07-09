@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension 13.0, *)
 public struct Attack: Codable {
 	public let name: String
 	public let power: Int
@@ -110,12 +111,14 @@ public struct Attack: Codable {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Attack: CustomStringConvertible {
 	public var description: String {
 		return name
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Attack: Equatable, Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)

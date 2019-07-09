@@ -10,6 +10,11 @@
 ///
 /// It should also implement a `disableButtons()` method, for disabling user interaction
 /// during states of play where users should not be able to enter attacks
+///
+
+
+
+@available(iOSApplicationExtension 13.0, *)
 public protocol BattleEngineViewer: class {
 	func queue(action: BattleAction)
 	func disableButtons()

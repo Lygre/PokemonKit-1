@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension 13.0, *)
 public struct Ability: Codable {
 	public let name: String
 	public let description: String
@@ -37,6 +38,7 @@ public struct Ability: Codable {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Ability: Hashable {
 	public static func == (lhs: Ability, rhs: Ability) -> Bool {
 		return lhs.name == rhs.name && lhs.description == rhs.description

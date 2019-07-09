@@ -7,11 +7,15 @@
 //
 
 import Foundation
-
+import SwiftUI
+import Combine
 
 /// A Pokemon object refers to a specific instance of a Pokémon
 ///
-public class Pokemon: Codable {
+@available(iOSApplicationExtension 13.0, *)
+public class Pokemon: Codable, BindableObject {
+    
+    public let didChange = PassthroughSubject<Pokemon, Never>()
 	private var _nickname: String?
 	public var nickname: String {
 		get {
@@ -241,12 +245,14 @@ public class Pokemon: Codable {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Pokemon: CustomStringConvertible {
 	public var description: String {
 		return nickname
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Pokemon: Equatable {
 	public static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
 		return
@@ -265,6 +271,7 @@ extension Pokemon: Equatable {
 	}
 }
 
+@available(iOSApplicationExtension 13.0, *)
 extension Pokemon: Hashable {
     
     public func hash(into hasher: inout Hasher) {

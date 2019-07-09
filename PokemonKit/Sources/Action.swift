@@ -6,6 +6,7 @@
 //  Copyright © 2018 Rhys Morgan. All rights reserved.
 //
 
+@available(iOSApplicationExtension 13.0, *)
 public enum Action: Codable, Equatable {
 	case attack(attack: Attack)
 	case switchTo(Pokemon)

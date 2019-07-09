@@ -6,6 +6,7 @@
 //  Copyright © 2018 Rhys Morgan. All rights reserved.
 //
 
+@available(iOSApplicationExtension 13.0, *)
 public struct MovesetItem: Codable, Hashable {
 	public enum MoveLearnMethod: Codable, Hashable {
 		case levelUp(Int)
