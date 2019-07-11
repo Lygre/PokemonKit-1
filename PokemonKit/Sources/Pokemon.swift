@@ -139,13 +139,13 @@ open class Pokemon: Codable {
 		self.status = .healthy
 	}
 	
-	static func calculateHPStat(base: Int, EV: Int, IV: Int, level: Int) -> Int {
+	public static func calculateHPStat(base: Int, EV: Int, IV: Int, level: Int) -> Int {
 		let top = (2 * base + IV + Int(floor(Double(EV) / 4))) * level
 		let result = Int(floor(Double(top) / 100)) + level + 10
 		return result
 	}
 	
-	static func calculateOtherStats(base: Int, EV: Int, IV: Int, level: Int, natureModifier: Double) -> Double {
+	public static func calculateOtherStats(base: Int, EV: Int, IV: Int, level: Int, natureModifier: Double) -> Double {
 		let top = (2 * base + IV + Int(floor(Double(EV) / 4))) * level
 		let brackets = floor(Double(top) / 100) + 5
 		return floor(brackets * natureModifier)
