@@ -248,12 +248,12 @@ public class Pokedex {
 		let query = abilityTable.select(abilityNames[abilityName], abilityFlavorText[flavorText])
 			.join(abilityNames, on: abilityTable[id] == abilityNames[abilityID])
 			.join(abilityFlavorText, on: abilityTable[id] == abilityFlavorText[abilityID])
-			.filter(
-				abilityNames[localLanguageID] == 9 &&
-				abilityFlavorText[languageID] == 9 &&
-				abilityTable[mainSeries] == 1 &&
-				abilityFlavorText[versionGroupID] == 17
-		)
+//			.filter(
+//				abilityNames[localLanguageID] == 9 &&
+//				abilityFlavorText[languageID] == 9 &&
+//				abilityTable[mainSeries] == 1 &&
+//				abilityFlavorText[versionGroupID] == 17
+//		)
 		
 		do {
 			for row in try db.prepare(query) {
