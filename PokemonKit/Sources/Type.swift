@@ -40,6 +40,19 @@ public enum Type: String, Codable, Hashable, CaseIterable {
 				return "Not Very Effective"
 			}
 		}
+        
+        public var multiplierText: String {
+            switch self {
+            case.normallyEffective:
+                return "1x"
+            case .notEffective:
+                return "0x"
+            case .superEffective:
+                return "2x"
+            case .notVeryEffective:
+                return "1/2x"
+            }
+        }
 		
 		case normallyEffective = 1.0
 		case superEffective = 2.0
