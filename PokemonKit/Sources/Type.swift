@@ -38,6 +38,10 @@ public enum Type: String, Codable, Hashable, CaseIterable {
 				return "Super Effective"
 			case .notVeryEffective:
 				return "Not Very Effective"
+            case .doubleNotVeryEffective:
+                return "4x Resist"
+            case .doubleSuperEffective:
+                return "4x Super effective"
 			}
 		}
         
@@ -50,7 +54,11 @@ public enum Type: String, Codable, Hashable, CaseIterable {
             case .superEffective:
                 return "2x"
             case .notVeryEffective:
-                return "1/2x"
+                return "0.5x"
+            case .doubleSuperEffective:
+                return "4x"
+            case .doubleNotVeryEffective:
+                return "0.25x"
             }
         }
 		
@@ -58,6 +66,8 @@ public enum Type: String, Codable, Hashable, CaseIterable {
 		case superEffective = 2.0
 		case notVeryEffective = 0.5
 		case notEffective = 0
+        case doubleSuperEffective = 4.0
+        case doubleNotVeryEffective = 0.25
 	}
 	
 	public init(using number: Int) {
