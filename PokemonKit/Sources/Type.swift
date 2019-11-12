@@ -48,17 +48,17 @@ public enum Type: String, Codable, Hashable, CaseIterable {
         public var multiplierText: String {
             switch self {
             case.normallyEffective:
-                return "1x"
+                return "𝟷𝐱"
             case .notEffective:
-                return "0x"
+                return "𝟶𝐱"
             case .superEffective:
-                return "2x"
+                return "𝟸𝐱"
             case .notVeryEffective:
-                return "0.5x"
+                return "𝟶.𝟻𝐱"
             case .doubleSuperEffective:
-                return "4x"
+                return "𝟺𝐱"
             case .doubleNotVeryEffective:
-                return "0.25x"
+                return "𝟶.𝟸𝟻𝐱"
             }
         }
 		
