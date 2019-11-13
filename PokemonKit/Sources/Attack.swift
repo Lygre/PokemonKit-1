@@ -21,7 +21,7 @@ public struct Attack: Codable {
 	public let effectTarget: EffectTarget?
 	public let bonusEffect: BonusEffect?
 	
-	public enum DamageCategory: String, Codable {
+	public enum DamageCategory: String, Codable, CaseIterable {
         case physical, special, status
 		
 		init(with number: Int) {
