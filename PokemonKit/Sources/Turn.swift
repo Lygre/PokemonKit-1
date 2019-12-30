@@ -14,7 +14,7 @@ public class Turn: NSObject, Codable, GKGameModelUpdate {
 	
 	public var value: Int = 0 {
 		didSet {
-			print("Value for \(self) = \(value)")
+			debugPrint("Value for \(self) = \(value)")
 		}
 	}
 	

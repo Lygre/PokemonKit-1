@@ -30,9 +30,9 @@ public class BattleEngine: NSObject, GKGameModel {
 	private(set) var winner: Player? {
 		didSet {
 			guard let winner = winner else { return }
-			print("Setting winner as \(winner.name)")
-			print("Player One all fainted? \(playerOne.allFainted)")
-			print("Player Two all fainted? \(playerTwo.allFainted)")
+			debugPrint("Setting winner as \(winner.name)")
+			debugPrint("Player One all fainted? \(playerOne.allFainted)")
+			debugPrint("Player Two all fainted? \(playerTwo.allFainted)")
 			view?.queue(action: .notifyOfWinner(winner))
 			state = .completed
 		}
@@ -67,7 +67,7 @@ public class BattleEngine: NSObject, GKGameModel {
 	
 	var weatherCounter = 0 {
 		didSet {
-			print("Weather counter = \(weatherCounter)")
+			debugPrint("Weather counter = \(weatherCounter)")
 			if weatherCounter == 0 {
 				weather = .none
 			}
@@ -112,7 +112,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			let containsRun = !turns.filter { $0.action == .run }.isEmpty
 			
 			if (turns.count == maxTurnCount || containsForceSwitch || containsRun) && !resolveTurns {
-				print("resolveTurns set to true")
+				debugPrint("resolveTurns set to true")
 				resolveTurns = true
 			} else if turns.count == 0 {
 				resolveTurns = false
@@ -152,7 +152,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			let weatherBlocked = weather.blocks(type: attack.type)
 			
 			if effectiveness != .notEffective && !weatherBlocked {
-				print("\(attack.name) is going to do \(baseDamage) HP of damage against \(defender)")
+				debugPrint("\(attack.name) is going to do \(baseDamage) HP of damage against \(defender)")
 				defender.damage(max(1, baseDamage))
 				view?.queue(action: .useAttack(attacker: attacker, defender: defender, attack: attack))
 			} else if weatherBlocked {
@@ -167,7 +167,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			
 			lastDamage = baseDamage
 		case .status:
-			print("\(attacker) is going to use \(attack.name) against \(defender)")
+			debugPrint("\(attacker) is going to use \(attack.name) against \(defender)")
 			view?.queue(action: .useAttack(attacker: attacker, defender: defender, attack: attack))
 		}
 	}
@@ -221,9 +221,9 @@ public class BattleEngine: NSObject, GKGameModel {
 	}
 	
 	private func run() {
-		print("---")
-		print("Turn \(turnCounter)")
-		print("---")
+		debugPrint("---")
+		debugPrint("Turn \(turnCounter)")
+		debugPrint("---")
 		
 		while resolveTurns {
 			
@@ -271,8 +271,8 @@ public class BattleEngine: NSObject, GKGameModel {
 						attacker.volatileStatus.remove(.preparingTo(attack))
 					}
 					
-					print("\(playerOne.name)'s \(playerOne.activePokemon) - Lv. \(playerOne.activePokemon.level) has \(playerOne.activePokemon.currentHP)/\(playerOne.activePokemon.baseStats.hp) HP")
-					print("\(playerTwo.name)'s \(playerTwo.activePokemon) - Lv. \(playerTwo.activePokemon.level) has \(playerTwo.activePokemon.currentHP)/\(playerTwo.activePokemon.baseStats.hp) HP")
+					debugPrint("\(playerOne.name)'s \(playerOne.activePokemon) - Lv. \(playerOne.activePokemon.level) has \(playerOne.activePokemon.currentHP)/\(playerOne.activePokemon.baseStats.hp) HP")
+					debugPrint("\(playerTwo.name)'s \(playerTwo.activePokemon) - Lv. \(playerTwo.activePokemon.level) has \(playerTwo.activePokemon.currentHP)/\(playerTwo.activePokemon.baseStats.hp) HP")
 					
 					
 					
@@ -292,7 +292,7 @@ public class BattleEngine: NSObject, GKGameModel {
 								
 								if diceRoll == 1 {
 									view?.queue(action: .displayText("\(attacker.nickname) hurt itself in its confusion!"))
-									print("\(attacker.nickname) hurt itself in its confusion!")
+									debugPrint("\(attacker.nickname) hurt itself in its confusion!")
 									
 									let (baseDamage, _) = calculateDamage(attacker: attacker, defender: attacker, attack: Attack(name: "Confused", power: 40, basePP: 1, maxPP: 1, priority: 0, type: .typeless, category: .physical))
 									view?.queue(action: .confusedAttack(attacker))
@@ -374,7 +374,7 @@ public class BattleEngine: NSObject, GKGameModel {
 					switch attack.effectTarget {
 					case .attacker?:
 						runBonusEffect(attack: attack, target: attacker, player: turn.player)
-						print("\(attacker)'s stats are now: \(attacker.baseStats)")
+						debugPrint("\(attacker)'s stats are now: \(attacker.baseStats)")
 					case .defender?:
 						runBonusEffect(attack: attack, target: defender, player: turn.player)
 					default:
@@ -389,7 +389,7 @@ public class BattleEngine: NSObject, GKGameModel {
 					} else {
 						winner = playerOne
 					}
-					print("\(turn.player.name) has run")
+					debugPrint("\(turn.player.name) has run")
 					return
 				case .recharge:
 					let pokemon = turn.player.activePokemon
@@ -433,7 +433,7 @@ public class BattleEngine: NSObject, GKGameModel {
 						state = .awaitingSwitch
 					}
 					
-					print("Player whose Pokémon has fainted is: \(player.name)")
+					debugPrint("Player whose Pokémon has fainted is: \(player.name)")
 					
 					if player.playerId == playerOne.playerId {
 						activePlayer = playerOne
@@ -443,8 +443,8 @@ public class BattleEngine: NSObject, GKGameModel {
 				}
 			}
 			
-			print("\(playerOne.name)'s \(playerOne.activePokemon) has \(playerOne.activePokemon.currentHP)/\(playerOne.activePokemon.baseStats.hp) HP remaining")
-			print("\(playerTwo.name)'s \(playerTwo.activePokemon) has \(playerTwo.activePokemon.currentHP)/\(playerTwo.activePokemon.baseStats.hp) HP remaining")
+			debugPrint("\(playerOne.name)'s \(playerOne.activePokemon) has \(playerOne.activePokemon.currentHP)/\(playerOne.activePokemon.baseStats.hp) HP remaining")
+			debugPrint("\(playerTwo.name)'s \(playerTwo.activePokemon) has \(playerTwo.activePokemon.currentHP)/\(playerTwo.activePokemon.baseStats.hp) HP remaining")
 			
 			weatherCounter -= 1
 			terrainCounter -= 1
@@ -482,7 +482,7 @@ public class BattleEngine: NSObject, GKGameModel {
 		let attackerStat: Int
 		let defenderStat: Int
 		
-		print("---")
+		debugPrint("---")
 		
 		if attack.category == .physical {
 			if attack.name == "Foul Play" {
@@ -504,14 +504,14 @@ public class BattleEngine: NSObject, GKGameModel {
 		let topInnerBrackets = (floor(2 * Double(attacker.level)) / 5 + 2)
 		let topOfEquation = floor(floor(Double(topInnerBrackets) * Double(attack.power) * Double(attackerStat)) / Double(defenderStat))
 		
-		print("Attacker stat = \(attackerStat)")
-		print("Defender stat = \(defenderStat)")
-		print("Attack Power: \(attack.power)")
+		debugPrint("Attacker stat = \(attackerStat)")
+		debugPrint("Defender stat = \(defenderStat)")
+		debugPrint("Attack Power: \(attack.power)")
 		
 		let innerBrackets = floor(topOfEquation / 50 + 2)
 		
 		let rng = Random.shared.battleRNG() / 100
-		print("RNG = \(rng)")
+		debugPrint("RNG = \(rng)")
 		
 		if attacker.ability.name == "Protean" {
 			attacker.species.typeOne = attack.type
@@ -530,7 +530,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			stab = 1
 		}
 		
-		print("STAB = \(stab)")
+		debugPrint("STAB = \(stab)")
 		
 		let typeOneEff = attack.type.typeEffectiveness(recipient: defender.species.typeOne).rawValue
 		let typeTwoEff: Double
@@ -554,7 +554,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			effectiveness = .normallyEffective
 		}
 
-		print("Effectiveness = \(typeOneEff * typeTwoEff)")
+		debugPrint("Effectiveness = \(typeOneEff * typeTwoEff)")
 		
 		var weatherModifier: Double = 1
 		
@@ -571,9 +571,9 @@ public class BattleEngine: NSObject, GKGameModel {
 		
 		let damage = Int(modifiedDamage)
 		
-		print("Final damage = \(damage)")
+		debugPrint("Final damage = \(damage)")
 		
-		print("---")
+		debugPrint("---")
 		
 		return (damage, effectiveness)
 	}
@@ -754,7 +754,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			score -= 500
 		}
 		
-		print("Score for state = \(score)")
+		debugPrint("Score for state = \(score)")
 		return score
 	}
 	
@@ -802,7 +802,7 @@ public class BattleEngine: NSObject, GKGameModel {
 			}
 		}
 		
-		print("Possible turns for state = \(possibleTurns ?? []))")
+		debugPrint("Possible turns for state = \(possibleTurns ?? []))")
 		
 		return possibleTurns
 	}
@@ -811,7 +811,7 @@ public class BattleEngine: NSObject, GKGameModel {
 		if let turn = gameModelUpdate as? Turn {
 			self.addTurn(turn)
 		} else {
-			print("Failure")
+			debugPrint("Failure")
 		}
 	}
 	

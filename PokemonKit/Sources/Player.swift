@@ -29,7 +29,7 @@ public class Player: NSObject, Codable, GKGameModelPlayer {
 		if team.count < 6 {
 			team.append(pokemon)
 		} else {
-			print("Team full!")
+			debugPrint("Team full!")
 		}
 	}
 	

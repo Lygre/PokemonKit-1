@@ -124,7 +124,7 @@ public class Pokedex {
 			for case .confused(_) in $0.volatileStatus { return	}
 			let diceRoll = Random.shared.confusion()
 			$0.volatileStatus.insert(.confused(diceRoll))
-			print("\($0.nickname) became confused for \(diceRoll) turns!")
+			debugPrint("\($0.nickname) became confused for \(diceRoll) turns!")
 		}),
 		"Dark Pulse": .singleTarget({
 			let diceRoll = Random.shared.d5Roll()
@@ -137,14 +137,14 @@ public class Pokedex {
 			let diceRoll = Random.shared.d10Roll()
 			if diceRoll == 1 {
 				$0.volatileStatus.insert(.flinch)
-				print("\($0.nickname) flinched!")
+				debugPrint("\($0.nickname) flinched!")
 			}
 		}),
 		"Giga Drain": .singleTargetUsingDamage({ pokemon, damage in
 			let restoreHP = Int(Double(damage) * 0.5)
 			pokemon.currentHP += restoreHP
 			
-			print("\(pokemon.nickname) will restore by \(restoreHP) capped at their max. HP")
+			debugPrint("\(pokemon.nickname) will restore by \(restoreHP) capped at their max. HP")
 		}),
 		"Giga Impact": .singleTarget({ $0.volatileStatus.insert(.mustRecharge) }),
 		"Growl": .singleTarget({ $0.statStages.atk -= 1 }),
@@ -164,7 +164,7 @@ public class Pokedex {
 			let diceRoll = Random.shared.d10Roll()
 			if diceRoll == 1 && $0.status == .healthy {
 				$0.status = .frozen
-				print("\($0) was frozen!")
+				debugPrint("\($0) was frozen!")
 			}
 		}),
 		"Protect": .singleTarget({ $0.volatileStatus.insert(.protected) }),
@@ -263,7 +263,7 @@ public class Pokedex {
 				abilities[abilityName] = ability
 			}
 		} catch let error {
-			print("getAbilities() error: \(error)")
+			debugPrint("getAbilities() error: \(error)")
 		}
 		
 		return abilities
@@ -332,20 +332,20 @@ public class Pokedex {
 			for row in try db.prepare(query) {
 				
 				guard let pokedexNumber = row[0] as? Int64 else {
-					print("Failed to get ID")
+					debugPrint("Failed to get ID")
 					break
 				}
 				
 				guard let identifier = row[1] as? String else {
-					print("Failed to get identifier")
+					debugPrint("Failed to get identifier")
 					break
 				}
 				guard let pokemonName = row[2] as? String else {
-					print("Failed to get Name")
+					debugPrint("Failed to get Name")
 					break
 				}
 				guard let typeOneString = row[3] as? String else {
-					print("Failed to do Type One")
+					debugPrint("Failed to do Type One")
 					break
 				}
 				let typeTwoString = row[4] as? String
@@ -425,7 +425,7 @@ public class Pokedex {
 				
 			}
 		} catch let error {
-			print("getPokemon() error: \(error)")
+			debugPrint("getPokemon() error: \(error)")
 		}
 		return pokemon
 	}
@@ -572,7 +572,7 @@ public class Pokedex {
 				evolutions.insert(PokemonEvolution(evolvedPokemon: evolution, conditions: evolutionConditions))
 			}
 		} catch {
-			print("Error!")
+			debugPrint("Error!")
 		}
 		
 		if !evolutions.isEmpty {
@@ -707,7 +707,7 @@ public class Pokedex {
 				
 			}
 		} catch let error {
-			print(error.localizedDescription)
+			debugPrint(error.localizedDescription)
 		}
 		
 		return alternateForms
@@ -748,7 +748,7 @@ public class Pokedex {
 					attacks[moveName] = attack
 			}
 		} catch let error {
-			print("getAbilities() error: \(error)")
+			debugPrint("getAbilities() error: \(error)")
 		}
 		
 		return attacks
@@ -799,7 +799,7 @@ public class Pokedex {
 				moveset.append(MovesetItem(move: attack, moveLearnMethod: moveLearnMethod))
 			}
 		} catch let error {
-			print(error)
+			debugPrint(error)
 		}
 		
 		return moveset

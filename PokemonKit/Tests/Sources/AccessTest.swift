@@ -22,9 +22,9 @@ class AccessTest: XCTestCase {
         let eevee = Pokedex.default.pokemon["tyrogue"]!
         let eeveeEvolutions = eevee.evolutions?.sorted { $1.evolvedPokemon.dexNum > $0.evolvedPokemon.dexNum }
         for evolution in eeveeEvolutions ?? [] {
-            print("To evolve into: \(evolution.evolvedPokemon):")
+            debugPrint("To evolve into: \(evolution.evolvedPokemon):")
             for condition in evolution.conditions {
-                print(condition)
+                debugPrint(condition)
             }
         }
     }
@@ -56,7 +56,7 @@ class AccessTest: XCTestCase {
 	
 	func testAlternateFormCountMany() {
 		let pikachu = Pokedex.default.pokemon["pikachu"]!
-		print(pikachu.forms)
+		debugPrint(pikachu.forms)
 		XCTAssertEqual(pikachu.forms.count, 13)
 	}
 	

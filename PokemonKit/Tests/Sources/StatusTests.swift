@@ -94,7 +94,7 @@ class StatusTests: XCTestCase {
 		var containsConfused = false
 		// Checks for *any* occurence of confusion in Pokémon's volatile status
 		for case let .confused(number) in joe.activePokemon.volatileStatus {
-			print(".confused(\(number))")
+			debugPrint(".confused(\(number))")
 			containsConfused = true
 		}
 		
@@ -114,7 +114,7 @@ class StatusTests: XCTestCase {
 		var confusionOccurences = 0
 		
 		for case let .confused(number) in joe.activePokemon.volatileStatus {
-			print(".confused(\(number))")
+			debugPrint(".confused(\(number))")
 			confusionOccurences += 1
 		}
 		

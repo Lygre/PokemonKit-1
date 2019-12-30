@@ -94,7 +94,7 @@ open class Pokemon: Codable {
 			_statStages.spd = newValue.spd
 			
 			if _statStages.atk > 6 {
-				print("\(nickname)'s Attack can't go any higher!")
+				debugPrint("\(nickname)'s Attack can't go any higher!")
 				_statStages.atk = 6
 			} else if _statStages.atk < -6 {
 				_statStages.atk = -6
